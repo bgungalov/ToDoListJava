@@ -1,5 +1,6 @@
 package com.bgungalov.todolist;
 
+import com.bgungalov.todolist.datamodel.TodoData;
 import com.bgungalov.todolist.datamodel.TodoItem;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -9,10 +10,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TextArea;
 
-import java.time.LocalDate;
-import java.time.Month;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.List;
 
 public class Controller {
@@ -29,28 +27,30 @@ public class Controller {
     private Label deadlineLabel;
 
     public void initialize() {
-        TodoItem item1 = new TodoItem("Mail birthday card",
-                "Buy a 30th birthday card",
-                LocalDate.of(2021, Month.OCTOBER,25));
-        TodoItem item2 = new TodoItem("Doctors appointment",
-                "See doctor at 123 str",
-                LocalDate.of(2021, Month.SEPTEMBER,15));
-        TodoItem item3 = new TodoItem("Finish design",
-                "Buy a 30th birthday card",
-                LocalDate.of(2021, Month.MARCH,25));
-        TodoItem item4 = new TodoItem("Mail birthday card",
-                "Buy a 30th birthday card",
-                LocalDate.of(2021, Month.OCTOBER,25));
-        TodoItem item5 = new TodoItem("Mail birthday card",
-                "Buy a 30th birthday card",
-                LocalDate.of(2021, Month.OCTOBER,25));
-
-        todoItems = new ArrayList<TodoItem>();
-        todoItems.add(item1);
-        todoItems.add(item2);
-        todoItems.add(item3);
-        todoItems.add(item4);
-        todoItems.add(item5);
+//        TodoItem item1 = new TodoItem("Mail birthday card",
+//                "Buy a 30th birthday card",
+//                LocalDate.of(2021, Month.OCTOBER,25));
+//        TodoItem item2 = new TodoItem("Doctors appointment",
+//                "See doctor at 123 str",
+//                LocalDate.of(2021, Month.SEPTEMBER,15));
+//        TodoItem item3 = new TodoItem("Finish design",
+//                "Buy a 30th birthday card",
+//                LocalDate.of(2021, Month.MARCH,25));
+//        TodoItem item4 = new TodoItem("Mail birthday card",
+//                "Buy a 30th birthday card",
+//                LocalDate.of(2021, Month.OCTOBER,25));
+//        TodoItem item5 = new TodoItem("Mail birthday card",
+//                "Buy a 30th birthday card",
+//                LocalDate.of(2021, Month.OCTOBER,25));
+//
+//        todoItems = new ArrayList<TodoItem>();
+//        todoItems.add(item1);
+//        todoItems.add(item2);
+//        todoItems.add(item3);
+//        todoItems.add(item4);
+//        todoItems.add(item5);
+//
+//        TodoData.getInstance().setTodoItems(todoItems);
 
         todoListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<TodoItem>() {
             @Override
@@ -64,7 +64,7 @@ public class Controller {
             }
         });
 
-        todoListView.getItems().setAll(todoItems);
+        todoListView.getItems().setAll(TodoData.getInstance().getTodoItems());
         todoListView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
         todoListView.getSelectionModel().selectFirst();
     }
